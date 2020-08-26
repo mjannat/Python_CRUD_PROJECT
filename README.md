@@ -1,0 +1,2 @@
+# Python_CRUD_PROJECT
+Django, JQGRID, JSON, MVC
