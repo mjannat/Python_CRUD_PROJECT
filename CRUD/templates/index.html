@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CRUD</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.0/css/ui.jqgrid.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/free-jqgrid/4.14.0/jquery.jqgrid.min.js"></script>
+    <script>
+    //<![CDATA[
+    $(function () {
+        console.log({{ data|safe}});
+        var dt = {{ data|safe }}
+        "use strict";
+        $("#grid").jqGrid({
+            colModel: [
+                { name: "Name" },
+                { name: "Fathers_name" },
+                { name: "Mothers_name"},
+                { name: "Age"},
+            ],
+            data : dt
+        });
+    });
+    //]]>
+    </script>
+</head>
+<body>
+     <h1>Create Data into the form</h1>
+<form action = "{% url 'create' %}" method = "POST">
+    {%  csrf_token %}
+    
+    Name<br> <input type="text" name = "name">
+    <br> <br> <br>
+    Father Name<br> <input type="text" name = "fname">
+    <br> <br> <br>
+    MotherName <br><input type="text" name = "mame">
+    <br><br><br>
+    Age<br><input type="text" name = "age">
+    <br> <br> <br>
+    <input type = "submit" value="Save & submit">
+    <br> <br> <br>
+</form>
+    <h1>Read Data from Database<h1>
+<table id="grid"></table>
+</body>
+</html>
